@@ -11,6 +11,8 @@ export default function InputText(props) {
       label={props.label}
       placeholder={props.placeholder}
       size="lg"
+      isInvalid={props.isInvalid}
+      errorMessage={props.errorMessage}
       required
     />
   );

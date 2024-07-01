@@ -5,38 +5,63 @@ import InputText from "../components/Input";
 import SelectText from "../components/Select";
 import RadioInput from "../components/Radio";
 import TextModal from "../components/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Toast from "../components/Toast";
 import AlertPopup from "../components/Alert";
+import tesNomorHP from "../validasiNomor";
 
 export default function FormRegistrasi() {
+  const [error, setError] = useState({});
   const [setuju, setSetuju] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [form, setForm] = useState({
-    nama: "Barbara",
-    email: "mail@mail.com",
-    whatsapp: "0822",
-    kota: "k",
-    usia: "12",
-    pendidikan: "p",
-    isKursus: "Sudah",
-    program: "p",
-    periode: "p",
-    jam: "p",
-    subject: "p",
-    tujuan: "p",
+    nama: "",
+    email: "",
+    whatsapp: "",
+    kota: "",
+    usia: "",
+    pendidikan: "",
+    isKursus: "",
+    program: "",
+    periode: "",
+    jam: "",
+    subject: "",
+    tujuan: "",
   });
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    let errors = {};
+    if (!form.email) {
+      errors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      errors.email = "Email is invalid.";
+    }
+
+    if (!form.whatsapp) {
+      errors.whatsapp = "Phone is required.";
+    } else if (!/^\+?([0-9]{2})\)?([0-9]{7,14})$/.test(form.whatsapp)) {
+      errors.whatsapp = "Phone is invalid.";
+    }
+    setError(errors);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (setuju) {
       console.log(form);
       setShowToast(true);
+      navigate("/terimakasih");
     } else {
       setShowAlert(true);
     }
   };
+
+  useEffect(() => {
+    validateForm();
+  }, [form.email, form.whatsapp]);
   return (
     <div className="container mx-auto">
       <div className="pt-10 mx-auto">
@@ -53,8 +78,8 @@ export default function FormRegistrasi() {
           <h2 className="mb-4 text-2xl font-bold">Data Diri</h2>
           <div className="grid grid-cols-2 gap-4">
             <InputText
-              type="text"
               label="Nama"
+              type="text"
               placeholder="Nama lengkap"
               value={form.nama}
               onChange={(e) => {
@@ -65,8 +90,8 @@ export default function FormRegistrasi() {
               }}
             />
             <InputText
-              type="text"
               label="No. WA"
+              type="text"
               placeholder="Nomor whatsapp"
               value={form.whatsapp}
               onChange={(e) => {
@@ -75,10 +100,12 @@ export default function FormRegistrasi() {
                   whatsapp: e.target.value,
                 });
               }}
+              isInvalid={error.whatsapp}
+              errorMessage="error"
             />
             <InputText
-              type="email"
               label="Email"
+              type="email"
               placeholder="Email"
               value={form.email}
               onChange={(e) => {
@@ -87,11 +114,13 @@ export default function FormRegistrasi() {
                   email: e.target.value,
                 });
               }}
+              isInvalid={error.email}
+              errorMessage="error"
             />
 
             <InputText
-              type="text"
               label="Kota Asal"
+              type="text"
               placeholder="Kota asal"
               value={form.kota}
               onChange={(e) => {
@@ -102,8 +131,8 @@ export default function FormRegistrasi() {
               }}
             />
             <InputText
-              type="number"
               label="Usia"
+              type="number"
               placeholder="Usia"
               value={form.usia}
               onChange={(e) => {
