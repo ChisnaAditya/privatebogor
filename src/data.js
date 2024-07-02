@@ -100,6 +100,32 @@ export const periode = [
     desc: "",
   },
 ];
+export const jam = [
+  {
+    name: "07.00-08.30 WIB",
+    desc: "",
+  },
+  {
+    name: "08.45-10.15 WIB",
+    desc: "",
+  },
+  {
+    name: "09.30-11.00 WIB",
+    desc: "",
+  },
+  {
+    name: "10.30-12.00 WIB",
+    desc: "",
+  },
+  {
+    name: "12.30-14.00 WIB",
+    desc: "",
+  },
+  {
+    name: "14.15-15.45 WIB",
+    desc: "",
+  },
+];
 export const jenjang = [
   {
     name: "SD",

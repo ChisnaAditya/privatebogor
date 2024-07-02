@@ -1,5 +1,13 @@
 import { Button, Checkbox } from "@nextui-org/react";
-import { periode, program, subject, jenjang, sk, kebijakan } from "../data";
+import {
+  periode,
+  program,
+  jam,
+  subject,
+  jenjang,
+  sk,
+  kebijakan,
+} from "../data";
 import InputArea from "../components/Area";
 import InputText from "../components/Input";
 import SelectText from "../components/Select";
@@ -179,7 +187,7 @@ export default function FormRegistrasi() {
             />
             <SelectText
               label="Jam Belajar"
-              listData={program}
+              listData={jam}
               placeholder="Pilihan jam belajar"
               onChange={(e) => {
                 setForm({
