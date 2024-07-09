@@ -17,7 +17,7 @@ export default function Toast() {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
+            strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
             d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"

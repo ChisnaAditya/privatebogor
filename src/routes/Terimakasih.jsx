@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/LOGO LC.png";
+import axios from "axios";
+
 export default function Terimakasih() {
+  useEffect(() => {
+    // axios.get("https://bod.languagecenter.id/bogor-private").then((res) => {
+    //   console.log(res);
+    // });
+  }, []);
   return (
     <div className="min-h-screen max-w-lg mx-auto flex flex-col justify-center items-center">
       <img src={logo} alt="logo kampung inggris lc" className="w-[200px]" />

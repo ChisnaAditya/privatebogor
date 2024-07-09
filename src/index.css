@@ -5,3 +5,9 @@
 body {
     background-color: #f8fafc;
 }
+
+.custom-bg {
+    background-image: url("/hero-bg.svg");
+    background-position: center;
+    background-size: cover;
+}
