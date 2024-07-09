@@ -130,10 +130,10 @@ export default function FormRegistrasi() {
   }, [form.email, form.whatsapp]);
   return (
     <div className="flex flex-row-reverse">
-      <div className="container px-10 lg:basis-2/3 mx-auto h-screen overflow-x-scroll">
-        <div className="flex justify-between py-5 w-full">
+      <div className="container px-2 lg:px-10 lg:basis-2/3 mx-auto h-screen overflow-x-scroll">
+        <div className="flex flex-col-reverse gap-4 lg:flex-row justify-between py-5 w-full">
           <article>
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-xl lg:text-2xl font-bold">
               REGISTRASI PROGRAM PRIVATE DAN SEMI PRIVATE
             </h1>
             <p>Silahkan mengisi form di bawah ini dengan lengkap</p>
@@ -146,7 +146,7 @@ export default function FormRegistrasi() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-10 mx-auto w-full"
         >
-          <div className="rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-10 bg-slate-50">
+          <div className="rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-2 lg:p-10 bg-slate-50">
             <h2 className="mb-4 text-2xl font-bold">Data Diri</h2>
             <div className="grid lg:grid-cols-2 gap-4">
               <InputText
@@ -233,7 +233,7 @@ export default function FormRegistrasi() {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-4 rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-10 bg-slate-50">
+          <div className="flex flex-col gap-4 rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-2 lg:p-10 bg-slate-50">
             <h2 className="mb-4 text-2xl font-bold">Paket Program</h2>
             <RadioInput
               onChange={(e) => {
@@ -304,7 +304,7 @@ export default function FormRegistrasi() {
               }}
             />
           </div>
-          <div className="rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-10 relative">
+          <div className="rounded-xl shadow-xl backdrop-blur-xl backdrop-saturate-200 p-2 lg:p-10 relative">
             <h2 className="mb-4 text-xl font-bold">Lain-Lain</h2>
             <div className="flex gap-4 mb-2">
               <TextModal title="Syarat dan Ketentuan" content={sk} />
@@ -325,7 +325,7 @@ export default function FormRegistrasi() {
           </div>
           <Button
             type="submit"
-            className="w-full my-5 shadow-lg bg-[#EA1E24] text-white font-bold"
+            className="w-full my-5 shadow-lg bg-yellow-400 font-bold"
           >
             Daftar Sekarang
           </Button>
