@@ -8,6 +8,7 @@ export default function RadioInput(props) {
       defaultValue="Sudah"
       orientation="horizontal"
       size="sm"
+      color="danger"
       onChange={props.onChange}
     >
       <Radio value="Sudah">Sudah</Radio>

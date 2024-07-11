@@ -14,7 +14,12 @@ export default function TextModal(props) {
 
   return (
     <>
-      <Link onPress={onOpen} className="cursor-pointer">
+      <Link
+        color="foreground"
+        underline="always"
+        onPress={onOpen}
+        className="cursor-pointer hover:text-[#EA1E24]"
+      >
         {props.title}
       </Link>
       <Modal

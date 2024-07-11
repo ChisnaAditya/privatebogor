@@ -26,18 +26,23 @@ import SelectText from "../components/Select";
 import RadioInput from "../components/Radio";
 import TextModal from "../components/Modal";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Toast from "../components/Toast";
 import AlertPopup from "../components/Alert";
-import LogoLC from "../assets/LOGO LC.png";
-import hero from "../assets/form-bogor-hero.png";
-import heroo from "../assets/hero-private-bogor.jpg";
+import logo from "../assets/LOGO LC.png";
+import hero from "../assets/hero.png";
 import axios from "axios";
 export default function FormRegistrasi() {
   const [error, setError] = useState({});
   const [setuju, setSetuju] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
+  const [utm_source, setUtmSource] = useState("");
+  const [utm_medium, setUtmMedium] = useState("");
+  const [utm_campaign, setUtmCampaign] = useState("");
+  const [utm_content, setUtmContent] = useState("");
+
   const [form, setForm] = useState({
     nama: "",
     email: "",
@@ -45,14 +50,20 @@ export default function FormRegistrasi() {
     kota: "",
     usia: "",
     pendidikan: "",
-    isKursus: "",
+    isKursus: "Sudah",
     program: "",
     periode: "",
     jam: "",
     subject: "",
     tujuan: "",
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_content: "",
   });
+
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const validateForm = () => {
     let errors = {};
@@ -74,33 +85,31 @@ export default function FormRegistrasi() {
     e.preventDefault();
     if (setuju) {
       // console.log(form);
-      const url = "https://bod.languagecenter.id/bogor-private";
+      const url = "https://bod.languagecenter.id/v2/bogor-private/";
 
       const dataLead = {
         nama: form.nama,
         email: form.email,
-        nowa: form.whatsapp,
-        // kota: form.kota,
+        whatsapp: form.whatsapp,
+        kota: form.kota,
         usia: form.usia,
-        // pendidikan: form.pendidikan,
-        // isKursus: form.isKursus,
+        pendidikan: form.pendidikan,
+        isKursus: form.isKursus,
         paket: form.program,
         periode: form.periode,
         jam: form.jam,
         subject: form.subject,
         tujuan: form.tujuan,
-        tanggal: "tanggal",
-        pj_pare: "pj_pare",
-        utm_source: "utm_source",
-        utm_medium: "utm_medium",
-        utm_campaign: "utm_campaign",
-        utm_content: "utm_content",
-        utm_id: "utm_id",
+        utm_source: utm_source,
+        utm_medium: utm_medium,
+        utm_campaign: utm_campaign,
+        utm_content: utm_content,
+        utm_id: "",
       };
 
       try {
-        // setIsLoading(!isLoading);
         setShowToast(true);
+        // console.log(dataLead);
         await axios
           .post(url, dataLead, {
             headers: {
@@ -108,7 +117,6 @@ export default function FormRegistrasi() {
             },
           })
           .then((res) => {
-            // setIsLoading(false);
             console.log(res);
             setShowToast(false);
             if (res.status === 200) {
@@ -128,20 +136,39 @@ export default function FormRegistrasi() {
   useEffect(() => {
     validateForm();
   }, [form.email, form.whatsapp]);
+
+  useEffect(() => {
+    if (searchParams.get("utm_source") !== null) {
+      setUtmSource(searchParams.get("utm_source"));
+    }
+
+    if (searchParams.get("utm_medium") !== null) {
+      setUtmMedium(searchParams.get("utm_medium"));
+    }
+
+    if (searchParams.get("utm_campaign") !== null) {
+      setUtmCampaign(searchParams.get("utm_campaign"));
+    }
+    if (searchParams.get("utm_content") !== null) {
+      setUtmContent(searchParams.get("utm_content"));
+    }
+  }, []);
+
   return (
-    <div className="flex flex-row-reverse">
-      <div className="container px-2 lg:px-10 lg:basis-2/3 mx-auto h-screen overflow-x-scroll">
-        <div className="flex flex-col-reverse gap-4 lg:flex-row justify-between py-5 w-full">
-          <article>
-            <h1 className="text-xl lg:text-2xl font-bold">
-              REGISTRASI PROGRAM PRIVATE DAN SEMI PRIVATE
-            </h1>
-            <p>Silahkan mengisi form di bawah ini dengan lengkap</p>
-          </article>
-          <div>
-            <img src={LogoLC} alt="logo lc" className="w-[100px]" />
-          </div>
+    <div className="flex flex-col lg:flex-row">
+      <div className="flex lg:flex-col lg:basis-1/3 lg:min-h-screen bg-yellow-400 rounded-b-[2rem] lg:rounded-es-none lg:rounded-e-[2rem]">
+        <article className="w-full flex flex-col justify-center lg:flex-col px-4 lg:px-10">
+          <img src={logo} alt="logo lc" className="w-[100px] py-4" />
+          <h1 className="text-xl leading-5 lg:text-3xl font-bold">
+            REGISTRASI PROGRAM PRIVATE DAN SEMI PRIVATE
+          </h1>
+          <h2 className="leading-5">Kampung Inggris LC Bogor</h2>
+        </article>
+        <div className="w-full">
+          <img src={hero} alt="logo lc" className="mx-auto py-4" />
         </div>
+      </div>
+      <div className="container mt-5 px-2 lg:px-10 lg:basis-2/3 mx-auto lg:h-screen lg:overflow-x-scroll">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-10 mx-auto w-full"
@@ -325,14 +352,11 @@ export default function FormRegistrasi() {
           </div>
           <Button
             type="submit"
-            className="w-full my-5 shadow-lg bg-yellow-400 font-bold"
+            className="w-full mb-10 shadow-lg font-bold bg-yellow-400 text-black"
           >
             Daftar Sekarang
           </Button>
         </form>
-      </div>
-      <div className="hidden lg:flex lg:basis-1/3 h-screen bg-yellow-400 rounded-e-[2rem]">
-        {/* <img alt="hero image private bogor" src={heroo} /> */}
       </div>
     </div>
   );
