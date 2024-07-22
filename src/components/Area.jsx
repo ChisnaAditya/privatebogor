@@ -9,6 +9,7 @@ export default function InputArea(props) {
       size="lg"
       variant="bordered"
       required
+      isRequired
     />
   );
 }
