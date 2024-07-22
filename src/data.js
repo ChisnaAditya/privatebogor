@@ -110,10 +110,6 @@ export const jam = [
     desc: "",
   },
   {
-    name: "09.30-11.00 WIB",
-    desc: "",
-  },
-  {
     name: "10.30-12.00 WIB",
     desc: "",
   },
