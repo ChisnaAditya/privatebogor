@@ -14,6 +14,7 @@ export default function InputText(props) {
       isInvalid={props.isInvalid}
       errorMessage={props.errorMessage}
       required
+      isRequired
       classNames={{
         label: "text-black/80",
         input: [
