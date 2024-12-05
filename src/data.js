@@ -52,51 +52,51 @@ export const subject = [
 ];
 export const periode = [
   {
-    name: "08 Januari 2024",
+    name: "13 Januari 2025",
     desc: "",
   },
   {
-    name: "12 Februari 2024",
+    name: "10 Februari 2025",
     desc: "",
   },
   {
-    name: "11 Maret 2024",
+    name: "10 Maret 2025",
     desc: "",
   },
   {
-    name: "08 April 2024",
+    name: "14 April 2025",
     desc: "",
   },
   {
-    name: "13 Mei 2024",
+    name: "12 Mei 2025",
     desc: "",
   },
   {
-    name: "10 Juni 2024",
+    name: "9 Juni 2025",
     desc: "",
   },
   {
-    name: "08 Juli 2024",
+    name: "14 Juli 2025",
     desc: "",
   },
   {
-    name: "12 Agustus 2024",
+    name: "11 Agustus 2025",
     desc: "",
   },
   {
-    name: "09 September 2024",
+    name: "08 September 2025",
     desc: "",
   },
   {
-    name: "14 Oktober 2024",
+    name: "13 Oktober 2025",
     desc: "",
   },
   {
-    name: "11 November 2024",
+    name: "10 November 2025",
     desc: "",
   },
   {
-    name: "09 Desember 2024",
+    name: "08 Desember 2025",
     desc: "",
   },
 ];
